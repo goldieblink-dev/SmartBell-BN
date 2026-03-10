@@ -1,31 +1,30 @@
-Smartbell-BN
+# Smartbell-BN
 
-Smartbell-BN adalah sistem bell otomatis berbasis web yang dirancang untuk sekolah, dengan fitur penjadwalan bell, deteksi bell berikutnya secara real-time, dan dashboard monitoring. Sistem ini dibuat agar scalable, maintainable, dan production-ready untuk deployment di VPS.
+Smartbell-BN is a web-based automated bell system designed for schools, featuring bell scheduling, real-time next bell detection, and a monitoring dashboard. The system is built to be scalable, maintainable, and production-ready for deployment on VPS.
 
-Fitur Utama
+## Key Features
 
-- Penjadwalan Bell Otomatis
-Mengatur jadwal bell harian/mingguan secara otomatis, mendukung berbagai skema sekolah.
+- Automatic Bell Scheduling
+Manage daily/weekly bell schedules automatically, supporting various school timing schemes.
 
 - Next Bell Detection
-Dashboard menampilkan bell berikutnya secara real-time, sehingga admin/pengguna bisa melihat waktu bell berikutnya.
+The dashboard displays the next bell in real-time, allowing admins/users to see upcoming bell times.
 
-- Scheduler Anti Double-Trigger
-Algoritma khusus mencegah bell berbunyi lebih dari sekali pada satu waktu, meminimalkan bug.
+- Anti Double-Trigger Scheduler
+Special algorithm prevents bells from ringing more than once at the same time, minimizing bugs.
 
-- Dashboard Monitoring
+- Monitoring Dashboard
+-- View today’s bell schedule
+-- Bell status (active/inactive)
+-- Bell activity logs for auditing
 
-Tampilkan jadwal hari ini
-Status bell (aktif/tidak aktif)
-Log aktivitas bell untuk audit
+- Multi-User Management
+Admins can add/remove users and assign access permissions.
 
-- Multi-user Management
-Admin bisa menambah/menghapus user, dan mengatur hak akses.
+- API & Webhook Integration (Optional)
+Ready to integrate with other systems like SMS gateways or IoT devices.
 
-- Integrasi API dan Webhook (opsional)
-Siap diintegrasikan dengan sistem lain seperti SMS gateway atau IoT device.
-
-Teknologi
+## Technology Stack
 
 - Backend: Laravel 10 (PHP 8.2)
 - Frontend: React.js
@@ -34,62 +33,64 @@ Teknologi
 - Deployment: VPS (Ubuntu/Debian) + Nginx + Supervisor
 - Security: HTTPS, CSRF protection, password hashing (bcrypt/argon2)
 
-Instalasi & Deployment
+# Installation & Deployment
 
-Clone Repository
+## Clone Repository
 ```bash
 git clone https://github.com/goldieblink-dev/Smartbell-BN.git
 cd Smartbell-BN
 ```
-Install Dependencies
+## Install Dependencies
 ```bash
 composer install
 npm install
 ```
-Environment Setup
-Copy .env.example → .env
-Atur database, queue, dan URL sesuai VPS
+## Environment Setup
 
-Migrate Database
+- Copy .env.example → .env
+- Configure database, queue, and URL according to VPS
+
+## Migrate Database
 ```bash
 php artisan migrate --seed
 ```
-Compile Frontend
+## Compile Frontend
 ```bash
 npm run build
 ```
-Jalankan Queue & Scheduler
+## Run Queue & Scheduler
 ```bash
 php artisan queue:work
 php artisan schedule:work
 ```
-Deployment Production
+## Production Deployment
 
-- Gunakan Nginx + PHP-FPM
+- Use Nginx + PHP-FPM
 - Setup HTTPS (Let's Encrypt)
-- Gunakan Supervisor untuk queue & scheduler
+- Use Supervisor for queue & scheduler
 
-Struktur Project
-```bash
+Project Structure
+``` bash
 Smartbell-BN/
-├─ app/          # Backend Laravel
-├─ database/     # Migration & seeders
+├─ app/          # Laravel backend
+├─ database/     # Migrations & seeders
 ├─ public/       # Frontend build
 ├─ resources/    # Blade templates, React assets
 ├─ routes/       # API & Web routes
 ├─ scheduler/    # Cron jobs / Bell scheduler logic
 └─ README.md
 ```
-Risiko & Mitigasi
+## Risks & Mitigation
 
-- Double-trigger bell → Implementasi anti double-trigger dengan locking mechanism
-- Downtime VPS → Setup monitoring + alert system
-- Security vulnerabilities → HTTPS mandatory, input validation, rate limiting, CSRF protection
-- Scalability bottleneck → Queue + job system untuk penjadwalan heavy load
+- Double-trigger bell: Implemented anti double-trigger with locking mechanism
+- VPS downtime: Setup monitoring & alert system
+- Security vulnerabilities: Mandatory HTTPS, input validation, rate limiting, CSRF protection
+- Scalability bottleneck: Queue & job system for heavy-load scheduling
 
-Kontribusi
+## Contribution
 
-- Contributions welcome via pull request. Pastikan:
-- Coding standard Laravel & React dipatuhi
-- Feature branch dibuat
-- Pull request dijelaskan detail perubahan
+- Contributions are welcome via pull requests. Please ensure:
+
+-- Laravel & React coding standards are followed
+-- Feature branches are created
+-- Pull requests clearly explain changes
